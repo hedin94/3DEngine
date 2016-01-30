@@ -28,6 +28,7 @@ void RenderingEngine::render(GameObject* object)
 
   glEnable(GL_BLEND);
   glBlendFunc(GL_ONE, GL_ONE);
+  
   glDepthMask(false);
   glDepthFunc(GL_EQUAL);
 

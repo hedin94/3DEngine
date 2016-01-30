@@ -69,8 +69,11 @@ void CoreEngine::run()
 	  m_window->handleInput(m_input);
 	  if(m_window->isCloseRequested()) // To be able to close window 
 	    break;                         // when nothing is rendered
-	  m_physicsEngine->simulate(m_ticks_per_frame);
-	  m_physicsEngine->handleCollision(m_ticks_per_frame);
+	  if(!Window::isPaused())
+	    {
+	      m_physicsEngine->simulate(m_ticks_per_frame);
+	      m_physicsEngine->handleCollision(m_ticks_per_frame);
+	    }
 	  m_game->input(m_ticks_per_frame);
 	  m_game->update(m_ticks_per_frame);
 	}

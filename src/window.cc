@@ -11,6 +11,7 @@ SDL_Window* Window::m_window = nullptr;
 SDL_GLContext Window::m_glContext;
 bool Window::m_isCloseRequested = false;
 bool Window::m_mouseLocked = false;
+bool Window::m_paused = false;
 
 Window::Window(int width, int height, std::string title)
 {
@@ -58,6 +59,11 @@ Window::~Window()
 bool Window::isCloseRequested()
 {
   return m_isCloseRequested;
+}
+
+bool Window::isPaused()
+{
+  return m_paused;
 }
 
 float Window::getAspect() 
@@ -110,4 +116,8 @@ void Window::handleInput(Input* input)
       std::cout << "\nWindow was close requested!" << std::endl;
       m_isCloseRequested = true;
     }
+
+  if(input->get_downKey(SDLK_p))
+    m_paused = !m_paused;
+
 }

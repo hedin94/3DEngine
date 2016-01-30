@@ -18,11 +18,12 @@ public:
   glm::vec3 getPos() const { return m_pos; }
   glm::vec3 getVel() const { return m_vel; }
   float getMass() const { return m_mass; }
+  float getInvMass() const { return m_inv_mass; }
   Collider* getCollider();
 
   void setPos(const glm::vec3& pos);
   void setVel(const glm::vec3& vel) { m_vel = vel; }
-  void setMass(const float& mass)   { m_mass = mass; }
+  void setMass(const float& mass)   { m_mass = mass; m_inv_mass = 1/mass; }
   void setCollider(Collider* collider);
 
   bool isMovable() const { return m_movable; }
@@ -35,6 +36,7 @@ private:
   glm::vec3 m_pos;
   glm::vec3 m_vel;
   float m_mass;
+  float m_inv_mass;
 
   Collider* m_collider; 
 

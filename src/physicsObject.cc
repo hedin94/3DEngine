@@ -3,7 +3,7 @@
 #include <iostream>
 
 PhysicsObject::PhysicsObject(const glm::vec3& pos, const glm::vec3& vel, const float& mass, Collider* collider, const bool& movable)
-  : m_pos(pos), m_vel(vel), m_mass(mass), m_collider(collider), m_movable(movable) 
+  : m_pos(pos), m_vel(vel), m_mass(mass), m_inv_mass(1/mass), m_collider(collider), m_movable(movable) 
 {
   // m_collider->translate(pos);
 }

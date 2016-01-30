@@ -19,6 +19,7 @@ public:
   static void update();
   static bool isCloseRequested();
   static void isCloseRequested(bool b) { m_isCloseRequested = b; }
+  static bool isPaused();
 
   static float getAspect();
   static int getWidth();
@@ -44,5 +45,8 @@ private:
   static SDL_GLContext m_glContext;
   static bool m_isCloseRequested;
   static bool m_mouseLocked;
+
+  // Temporary
+  static bool m_paused;
 };
 #endif // WINDOW_H

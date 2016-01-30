@@ -11,7 +11,7 @@ IntersectData Plane::intersect(Collider* other) const
 
   if(sphere != nullptr)
     {
-      float distanceToSphere = dot(m_normal, sphere->getPos());
+      float distanceToSphere = glm::dot(m_normal, sphere->getPos());
       if(distanceToSphere < 0)
 	distanceToSphere = std::fabs(distanceToSphere) + m_offset;
       else
