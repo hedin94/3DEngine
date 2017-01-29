@@ -10,6 +10,7 @@
 #include <map>
 #include <string>
 #include <glm/glm.hpp>
+#include "texture.h"
 
 class GameObject;
 class BaseLight;
@@ -34,6 +35,9 @@ public:
   void      setVec3(const std::string& name, const glm::vec3& value);
   bool      vec3Exists(const std::string& name) const;
 
+  void setTexture(const std::string& name, Texture* value);
+  Texture* getTexture(const std::string& name);
+
   void       addLight(BaseLight* light);
   BaseLight* getActiveLight();
 
@@ -50,6 +54,7 @@ private:
   BaseLight* m_activeLight{ nullptr };
 
   std::map<std::string, glm::vec3> m_vec3Map{};
+  std::map<std::string, Texture*> m_textureMap{};
   std::map<std::string, int> m_samplerMap{};
 };
 #endif // RENDERING_ENGINE_H

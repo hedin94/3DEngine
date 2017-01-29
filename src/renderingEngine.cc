@@ -16,6 +16,7 @@ RenderingEngine::RenderingEngine()
 
   m_forwardAmbient = new Shader("forward-ambient");
   setVec3("ambientLight", glm::vec3(0.3f, 0.3f, 0.3f));
+  setTexture("shadowMap", new Texture(1024, 1024, 0));
 }
 
 RenderingEngine::~RenderingEngine()
@@ -83,6 +84,19 @@ void RenderingEngine::setVec3(const std::string& name, const glm::vec3& value)
 bool RenderingEngine::vec3Exists(const std::string& name) const
 {
   return m_vec3Map.find(name) != m_vec3Map.end();
+}
+
+void RenderingEngine::setTexture(const std::string& name, Texture* value)
+{
+  if(m_textureMap.find(name) == m_textureMap.end())
+    m_textureMap.emplace(name, value);
+  else
+    m_textureMap.at(name) = value;
+}
+
+Texture* RenderingEngine::getTexture(const std::string& name)
+{
+  return m_textureMap.at(name);
 }
 
 Camera* RenderingEngine::getCamera()

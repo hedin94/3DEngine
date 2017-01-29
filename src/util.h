@@ -4,4 +4,5 @@
 
 constexpr float toRad(float deg) { return deg * constants::PIdiv180; }
 
+
 #endif

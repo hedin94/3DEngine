@@ -24,6 +24,8 @@ public:
   RenderingEngine* getRenderingEngine() { return m_renderingEngine; }
   PhysicsEngine*   getPhysicsEngine()   { return m_physicsEngine; }
 
+  void setWindowIcon(const std::string& filename);
+
 private:
   void createWindow(std::string name);
   void run();
@@ -38,7 +40,7 @@ private:
 
   int m_width;
   int m_height;
-  int m_ticks_per_frame;
+  float  m_ticks_per_frame;
 };
 
 #endif // CORE_ENGINE_H

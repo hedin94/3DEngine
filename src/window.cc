@@ -8,6 +8,7 @@ int Window::m_width;
 int Window::m_height;
 std::string Window::m_title;
 SDL_Window* Window::m_window = nullptr;
+SDL_Surface* Window::m_icon = nullptr;
 SDL_GLContext Window::m_glContext;
 bool Window::m_isCloseRequested = false;
 bool Window::m_mouseLocked = false;
@@ -120,4 +121,16 @@ void Window::handleInput(Input* input)
   if(input->get_downKey(SDLK_p))
     m_paused = !m_paused;
 
+}
+
+void Window::setIcon(const std::string& filename) 
+{
+  if (m_icon == nullptr)
+    SDL_FreeSurface(m_icon);
+
+  m_icon = IMG_Load(std::string("./res/icons/" + filename).c_str());
+  if(m_icon == NULL)
+    std::cerr << "Could not load icon file " << filename << std::endl;
+  else
+    SDL_SetWindowIcon(m_window, m_icon);
 }

@@ -15,7 +15,7 @@ debug: 3DEngine
 testing.o: $(SRC_DIR)/testing.cc $(SRC_DIR)/testing.h
 	$(CCC) $(CFLAGS) $(SRC_DIR)/testing.cc
 
-3DrenderingEngine: window.o lighting.o camera.o shader.o material.o obj_loader.o mesh.o stb_image.o texture.o transform.o input.o  meshRenderer.o gameComponent.o gameObject.o game.o renderingEngine.o coreEngine.o freeLook.o freeMove.o followComponent.o 
+3DrenderingEngine: ostream_helper.o window.o lighting.o camera.o shader.o material.o obj_loader.o mesh.o stb_image.o texture.o transform.o input.o  meshRenderer.o gameComponent.o gameObject.o game.o renderingEngine.o coreEngine.o freeLook.o freeMove.o followComponent.o spawner.o
 
 main.o: $(SRC_DIR)/main.cc
 	$(CCC) $(CFLAGS) $(SRC_DIR)/main.cc
@@ -104,6 +104,11 @@ physicsEngine.o: $(SRC_DIR)/physicsEngine.cc $(SRC_DIR)/physicsEngine.h
 physicsComponent.o: $(SRC_DIR)/physicsComponent.cc $(SRC_DIR)/physicsComponent.h
 	$(CCC) $(CFLAGS) $(SRC_DIR)/physicsComponent.cc
 
+spawner.o: $(SRC_DIR)/spawner.cc $(SRC_DIR)/spawner.h
+	$(CCC) $(CFLAGS) $(SRC_DIR)/spawner.cc
+
+ostream_helper.o: $(SRC_DIR)/ostream_helper.cc $(SRC_DIR)/ostream_helper.h
+	$(CCC) $(CFLAGS) $(SRC_DIR)/ostream_helper.cc
 
 
 

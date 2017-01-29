@@ -3,17 +3,25 @@
 #include <iostream>
 
 PhysicsObject::PhysicsObject(const glm::vec3& pos, const glm::vec3& vel, const float& mass, Collider* collider, const bool& movable)
-  : m_pos(pos), m_vel(vel), m_mass(mass), m_inv_mass(1/mass), m_collider(collider), m_movable(movable) 
+  : m_pos(pos), m_vel(convertFromMPerSec(vel)), m_acc(glm::vec3()), m_mass(mass), m_inv_mass(1/mass), m_collider(collider), m_movable(movable) 
 {
   // m_collider->translate(pos);
 }
 
 void PhysicsObject::update(float delta)
 {
-  if(m_movable)
+  if(isMovable())
     {
-      m_pos += m_vel * delta;
-      m_collider->translate(m_vel * delta);
+      glm::vec3 gravityAcc(0, -10.0f, 0);
+      gravityAcc = convertFromMPerSec2(gravityAcc);
+      //setAcc(gravityAcc + m_acc);
+      glm::vec3 acc(m_acc + gravityAcc);
+
+      glm::vec3 s((m_vel + (acc * delta * 0.5f)) * delta);
+
+      m_pos += s;
+      m_collider->translate(s);
+      m_vel += acc * delta; 
     }
 }
 
@@ -32,6 +40,17 @@ Collider* PhysicsObject::getCollider()
 void PhysicsObject::setCollider(Collider* collider) 
 { 
   m_collider = collider; 
+}
+
+glm::vec3 PhysicsObject::convertFromMPerSec(const glm::vec3 v)
+{
+  return v * 0.002f;
+}
+
+
+glm::vec3 PhysicsObject::convertFromMPerSec2(const glm::vec3 v)
+{
+  return convertFromMPerSec(convertFromMPerSec(v));
 }
 
 void PhysicsObject::test() const

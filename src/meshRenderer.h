@@ -5,7 +5,8 @@
 #include "texture.h"
 #include "material.h"
 #include "shader.h"
-#include "phongShader.h"
+//#include "phongShader.h"
+#include "gameComponent.h"
 #include <iostream>
 #include "debug.h"
 

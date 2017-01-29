@@ -22,7 +22,7 @@ IntersectData BoundingSphere::intersect(Collider* other) const
       const BoundingSphere* sphere = this;
       float distanceToSphere = dot(plane->getNormal(), sphere->getPos());
       if(distanceToSphere < 0)
-      	distanceToSphere = std::fabs(distanceToSphere) + plane->getOffset();
+      	distanceToSphere = std::fabs(distanceToSphere) - plane->getOffset();
       else
       	distanceToSphere = std::fabs(distanceToSphere) - plane->getOffset();
 
@@ -35,7 +35,7 @@ IntersectData BoundingSphere::intersect(Collider* other) const
       // 		<< "Plane normal: " 
       // 		<< "(" << normal.x << ", " << normal.y << ", " << normal.z << ")\n";
 
-      return IntersectData(std::fabs(distanceToSphere) < sphere->getRadius(), float(-1) * plane->getNormal() * (distanceToSphere - sphere->getRadius()));
+      return IntersectData(std::fabs(distanceToSphere) < sphere->getRadius(), float(-1) * glm::normalize(plane->getNormal()) * (distanceToSphere - sphere->getRadius()));
     }
   else
     {

@@ -39,17 +39,17 @@ void Input::readInput()
 	  break;
 	case SDL_KEYDOWN:
 	  // if(!e.key.repeat)
-	  //   {
-	  m_downKeys.insert(e.key.keysym.sym);
-	  // m_upKeys.erase(e.key.keysym.sym);
-	  //}
+	  {
+	    m_downKeys.insert(e.key.keysym.sym);
+	    m_upKeys.erase(e.key.keysym.sym);
+	  }
 	  break;
 	case SDL_KEYUP:
 	  //if(!e.key.repeat)
-	  //{
-	  //m_upKeys.insert(e.key.keysym.sym);
-	  m_downKeys.erase(e.key.keysym.sym);
-	  //}
+	  {
+	    m_upKeys.insert(e.key.keysym.sym);
+	    m_downKeys.erase(e.key.keysym.sym);
+	  }
 	  break;
 	case SDL_MOUSEMOTION:
 	  SDL_GetMouseState(&m_mouseX, &m_mouseY);

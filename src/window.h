@@ -1,7 +1,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <SDL.h>
+#include "SDL.h"
+#include <SDL_image.h>
 #include <string>
 #include <glm/glm.hpp>
 #include "input.h"
@@ -34,6 +35,8 @@ public:
 
   static glm::vec2 get_windowCenter() { return glm::vec2((float)m_width/2.0f, (float)m_height/2.0f); }
 
+  static void setIcon(const std::string& filename);
+
 private:
   Window(int width, int height, std::string title);
   virtual ~Window();
@@ -42,6 +45,7 @@ private:
   static int m_height;
   static std::string m_title;
   static SDL_Window* m_window;
+  static SDL_Surface* m_icon;
   static SDL_GLContext m_glContext;
   static bool m_isCloseRequested;
   static bool m_mouseLocked;

@@ -26,6 +26,22 @@ Texture::Texture(const std::string& filename)
   stbi_image_free(imgData);
 }
 
+
+Texture::Texture(int width, int height, unsigned char* data, GLenum textureTarget, GLfloat filter, GLint internalFormat, GLenum format, bool clamp)
+{
+  if(width > 0 && height > 0 && data != 0)
+    {
+      glGenTextures(1, &m_texture);
+      glBindTexture(textureTarget, m_texture);
+      
+      glTexParameterf(textureTarget, GL_TEXTURE_MIN_FILTER, filter);
+      glTexParameterf(textureTarget, GL_TEXTURE_MAG_FILTER, filter);
+      
+      glTexImage2D(textureTarget, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+      
+    }
+}
+
 Texture::~Texture()
 {
   glDeleteTextures(1, &m_texture);

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include "SDL.h"
 #include "debug.h"
 
 CoreEngine::CoreEngine(int width, int height, int framerate, Game* game, std::string title)
@@ -12,13 +13,15 @@ CoreEngine::CoreEngine(int width, int height, int framerate, Game* game, std::st
   m_width = width;
   m_height = height;
   createWindow(title);
-  m_ticks_per_frame = 1000/framerate;
+  m_ticks_per_frame = 1000.0f/framerate;
   m_renderingEngine = new RenderingEngine();
   m_renderingEngine->setVec3("ambientLight", glm::vec3(0.1f, 0.1f, 0.1f));
   m_physicsEngine = new PhysicsEngine();
   m_game->setEngine(this);
   m_game->init();
   m_input = Input::getInstance();
+
+  std::cout << "ticks: " << m_ticks_per_frame << std::endl;
 }
 
 CoreEngine::~CoreEngine()
@@ -43,11 +46,14 @@ void CoreEngine::run()
 {
   m_running = true;
 
-  Uint32 frames = 0;
+  float frames = 0.0f;;
   Uint32 frameCounter = 0;
 
   Uint32 lastTime = SDL_GetTicks();
   Uint32 unprocessedTime = 0;
+
+  float fps = 60.0f;
+  float smoothing = 0.7f; 
 
   while(!m_window->isCloseRequested())
     {
@@ -79,14 +85,17 @@ void CoreEngine::run()
 	}
 
       if(frameCounter >= 1000)
-	{
-	  std::string fps("fps: " + std::to_string(frames));
-	  std::cout << std::setfill('\b') << std::setw(fps.length() * 2)
-		    << fps;
+      	{
+	  fps = (fps*smoothing) + (frames*(1-smoothing)); 
 
-	  frames = 0;
-	  frameCounter = 0;
-	}
+	  /*
+	  std::string fpsString("fps: " + std::to_string(frames) + "  avgFps: " + std::to_string(fps));
+      	   std::cout << std::setfill('\b') << std::setw(fpsString.length() * 2)
+      	   	    << fpsString;*/
+
+      	  frames = 0;
+      	  frameCounter = 0;
+      	}
 
       if(render)
 	{
@@ -102,4 +111,9 @@ void CoreEngine::run()
 void CoreEngine::createWindow(std::string name)
 {
   m_window = Window::getInstance(m_width, m_height, name);
+}
+
+void CoreEngine::setWindowIcon(const std::string& filename)
+{
+  Window::setIcon(filename);
 }
