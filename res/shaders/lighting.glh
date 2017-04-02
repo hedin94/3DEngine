@@ -38,12 +38,17 @@ struct SpotLight
 
 uniform sampler2D diffuse;
 uniform sampler2D normalMap;
+uniform sampler2D dispMap;
+
+uniform float dispMapScale;
+uniform float dispMapBias;
+
 uniform vec3 R_eyePos;
 
 uniform float specularIntensity;
 uniform float specularPower;
 
-vec4 calcLight(BaseLight base, vec3 direction, vec3 normal)
+vec4 calcLight(BaseLight base, vec3 direction, vec3 normal, vec3 worldPos)
 {
   float diffuseFactor = dot(normal, -direction);
   vec4 diffuseColor = vec4(0,0,0,0);
@@ -74,12 +79,12 @@ vec4 calcLight(BaseLight base, vec3 direction, vec3 normal)
   return diffuseColor * specularColor;
 }
 
-vec4 calcDirectionalLight(DirectionalLight light, vec3 normal)
+vec4 calcDirectionalLight(DirectionalLight light, vec3 normal, vec3 worldPos)
 {
-  return calcLight(light.base, light.direction, normal);
+  return calcLight(light.base, light.direction, normal, worldPos0);
 }
 
-vec4 calcPointLight(PointLight point, vec3 normal)
+vec4 calcPointLight(PointLight point, vec3 normal, vec3 worldPos)
 {
   vec3 lightDirection = worldPos0 - point.position;
   float distanceToPoint = length(lightDirection);
@@ -89,17 +94,17 @@ vec4 calcPointLight(PointLight point, vec3 normal)
     
   lightDirection = normalize(lightDirection);
     
-  vec4 color = calcLight(point.base, lightDirection, normal);
+  vec4 color = calcLight(point.base, lightDirection, normal, worldPos0);
     
   float attenuation = point.atten.constant +
     point.atten.linear * distanceToPoint +
     point.atten.exponent * distanceToPoint * distanceToPoint +
-    0.0001;
+    0.0001f;
                          
   return color / attenuation;
 }
 
-vec4 calcSpotLight(SpotLight light, vec3 normal)
+vec4 calcSpotLight(SpotLight light, vec3 normal, vec3 worldPos)
 {
   vec3 lightDirection = normalize(worldPos0 - light.pointLight.position);
   float spotFactor = dot(lightDirection, light.direction);
@@ -108,7 +113,7 @@ vec4 calcSpotLight(SpotLight light, vec3 normal)
     
   if(spotFactor > light.cutoff)
     {
-      color = calcPointLight(light.pointLight, normal) *
+      color = calcPointLight(light.pointLight, normal, worldPos0) *
 	(1.0 - (1.0 - spotFactor)/(1.0 - light.cutoff));
     }
     

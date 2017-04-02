@@ -12,7 +12,10 @@ public:
 	
   virtual ~Material();
 	
-  Material(Texture* diffuse, Texture* normalMap = new Texture("default_normal.jpg"), glm::vec3 color = glm::vec3(1,1,1), float specularIntensity = 1.0f, float specularPower = 0);
+  Material(Texture* diffuse, glm::vec3 color = glm::vec3(1,1,1), float specularIntensity = 1.0f, float specularPower = 0,
+	   Texture* normalMap = new Texture("default_normal.jpg"), 
+	   Texture* dispMap = new Texture("default_disp.png"), 
+	   float dispMapScale = 0.0f, float dispMapOffset = 0.0f);
 	
   void addFloat(const std::string& name, float value) { m_floatMap.insert(std::pair<std::string, float>(name, value)); }
   void addTexture(const std::string& name, Texture* value) { m_textureMap.insert(std::pair<std::string, Texture*>(name, value)); }

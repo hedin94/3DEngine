@@ -14,7 +14,7 @@ BaseLight::BaseLight(/*const std::string& shaderName,*/ glm::vec3 color, float i
 {
   this->color = color;
   this->intensity = intensity;
-//m_shader = new Shader("forward-ambient");
+  //m_shader = new Shader("forward-ambient");
 }
 
 void BaseLight::addToEngine(CoreEngine* engine)
@@ -25,6 +25,8 @@ void BaseLight::addToEngine(CoreEngine* engine)
 DirectionalLight::DirectionalLight(glm::vec3 color, float intensity)
   : BaseLight(color, intensity)
 {
+  if(m_shader != nullptr)
+    delete m_shader;
   m_shader = new Shader("forward-directional");
 }   
 
@@ -65,7 +67,9 @@ PointLight::PointLight(glm::vec3 color, float intensity, Attenuation atten_)//, 
   
   range = (-b + std::sqrt(b*b - (4*a*c)))/(2*a);
 
-m_shader = new Shader("forward-point");
+  if(m_shader != nullptr)
+    delete m_shader;
+  m_shader = new Shader("forward-point");
 }
 
 // Shader* PointLight::getShader() const
@@ -92,9 +96,9 @@ void PointLight::setParent(GameObject* parent)
 SpotLight::SpotLight(glm::vec3 color, float intensity, Attenuation atten, float cutoff_)
   : PointLight(color, intensity, atten), cutoff(cutoff_) 
 {
-if(m_shader != nullptr)
-  delete m_shader;
-m_shader = new Shader("forward-spot");
+  if(m_shader != nullptr)
+    delete m_shader;
+  m_shader = new Shader("forward-spot");
 }
 
 // Shader* SpotLight::getShader() const

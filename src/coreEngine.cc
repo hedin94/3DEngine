@@ -21,7 +21,7 @@ CoreEngine::CoreEngine(int width, int height, int framerate, Game* game, std::st
   m_game->init();
   m_input = Input::getInstance();
 
-  std::cout << "ticks: " << m_ticks_per_frame << std::endl;
+  //std::cout << "ticks: " << m_ticks_per_frame << std::endl;
 }
 
 CoreEngine::~CoreEngine()

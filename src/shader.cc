@@ -12,9 +12,10 @@
 
 Shader::Shader(const std::string& filename)
 {
-  //DEBUG(std::string("Shader constructor for " + filename));
+  DEBUG(std::string("Shader constructor for " + filename));
+  //Window::init();
   m_program = glCreateProgram();
-  
+
   if (m_program == 0) 
     {
       fprintf(stderr, "ERROR: could not create shader program\n");

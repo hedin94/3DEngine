@@ -1,13 +1,15 @@
 #version 150
 
-varying vec2 texCoord0;
+#include "lighting.glh"
 
-uniform sampler2D diffuse;
 uniform vec3 ambientLight;
 
 void main()
 {
-  vec4 color = texture2D(diffuse, texCoord0.xy);
+  vec3 directionToEye = normalize(R_eyePos - worldPos0);
+  vec2 texCoords = texCoord0.xy + (directionToEye * tbnMatrix).xy * (texture2D(dispMap, texCoord0.xy).r * dispMapScale + dispMapBias);
+
+  vec4 color = texture2D(diffuse, texCoords);
   vec4 totalLight = vec4(ambientLight, 1);
 
   gl_FragColor =  color * totalLight;

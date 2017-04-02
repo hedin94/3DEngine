@@ -41,6 +41,9 @@ private:
   Window(int width, int height, std::string title);
   virtual ~Window();
 
+
+  static void init();
+
   static int m_width;
   static int m_height;
   static std::string m_title;

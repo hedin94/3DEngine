@@ -5,7 +5,7 @@
 if(!(condition)) { printf((message)); } \
  assert ((condition)); } while(false)
 
-#endif
+#endif // ASSERT_H
 
 
 #ifndef DEBUG_H
@@ -15,6 +15,6 @@ if(!(condition)) { printf((message)); } \
 #define DEBUG(message) do { std::cerr << "DEBUG: " << message << '\n'; } while(false)
 #else
 #define DEBUG(message) do {;} while(false)
-#endif
+#endif // USE_DEBUG
 
 #endif // DEBUG_H

@@ -1,13 +1,20 @@
 #include "material.h"
 #include <iterator>
 
-Material::Material(Texture* diffuse, Texture* normalMap, glm::vec3 color, float specularIntensity, float specularPower)
+Material::Material(Texture* diffuse, glm::vec3 color, float specularIntensity, float specularPower,
+		   Texture* normalMap, Texture* dispMap,
+		   float dispMapScale, float dispMapOffset)
 {
   m_color = color;
   addTexture("diffuse", diffuse);
   addFloat("specularIntensity", specularIntensity);
   addFloat("specularPower", specularPower);
   addTexture("normalMap", normalMap);
+  addTexture("dispMap", dispMap);
+
+  float bias = dispMapScale/2.0f;
+  addFloat("dispMapScale", dispMapScale);
+  addFloat("dispMapBias", -bias + bias*dispMapOffset);
 }
 
 Material::~Material()

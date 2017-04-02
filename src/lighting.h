@@ -33,7 +33,7 @@ public:
   float intensity;
 
 protected:
-  Shader* m_shader;
+  Shader* m_shader = nullptr;
 };
 
 class DirectionalLight : public BaseLight
