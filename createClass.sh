@@ -45,7 +45,7 @@ echo "" >> include/$filename.hpp
 echo "#endif // $guard" >> include/$filename.hpp
 
 #Write to cpp file
-echo "#include $filename.hpp" > src/$filename.cpp
+echo "#include \"$filename.hpp\"" > src/$filename.cpp
 echo "" >> src/$filename.cpp
 echo "$class::$class(){" >> src/$filename.cpp
 echo "}" >> src/$filename.cpp
