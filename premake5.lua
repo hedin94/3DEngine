@@ -25,6 +25,6 @@ project (name)
     includedirs {"include"}
     filter {"system:windows"} -- Inconsistent...
         defines {"WINDOWS"}
-        links {"mingw32", "SDL2main", "SDL2", "SDL2_image", "glew32", "opengl32", "assimp"}
-        --buildoptions { "-mwindows", "-mconsole", "-std=c++11", "-g"}
-        buildoptions { "-g", "-c", "-w", "-Wl,subsystem,windows", "-std=c++11", "-Wpedantic"}
+        links { "mingw32", "SDL2main", "SDL2", "SDL2_image", "glew32", "opengl32", "assimp"}
+        -- buildoptions { "-mwindows", "-mconsole", "-std=c++11", "-g"}
+	buildoptions { "-c", "-g", "-w", "-std=gnu++11", "-Wl,subsystem,windows", "-Wall", "-Wpedantic" }

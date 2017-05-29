@@ -1,4 +1,9 @@
 #!/bin/bash
 
-exe=$(ls bin | head -1)
-./bin/$exe
+name=${PWD##*/}
+exe=$name.exe
+if [ -e bin/$exe ]; then
+    ./bin/$exe
+else
+    ./makeBuild.sh && ./run.sh
+fi

@@ -12,7 +12,7 @@ class Shader;
 class BaseLight : public GameComponent
 {
 public:
-  BaseLight(/*const std::string& shaderName,*/ glm::vec3 color = glm::vec3(0,0,0), float intensity = 0);
+  BaseLight(glm::vec3 color = glm::vec3(0,0,0), float intensity = 0);
 
   virtual void input(float delta) {}
   virtual void update(float delta) {}
@@ -33,8 +33,6 @@ class DirectionalLight : public BaseLight
 {
 public:
   DirectionalLight(glm::vec3 color = glm::vec3(0,0,0), float intensity = 0);
-
-  //virtual Shader* getShader() const override;
 
   virtual void update(float delta) override;
   virtual void addToEngine(CoreEngine* engine) override;
@@ -58,8 +56,6 @@ class PointLight : public BaseLight
 public:
   PointLight(glm::vec3 color = glm::vec3(0,0,0), float intensity = 0, Attenuation atten = Attenuation());//, const std::string& shaderName = "forward-point");
 
-  //virtual Shader* getShader() const override;
-
   virtual void update(float delta) override;
   virtual void addToEngine(CoreEngine* engine) override;
   virtual void setParent(GameObject* object) override;
@@ -74,8 +70,6 @@ class SpotLight : public PointLight
 
 public:
   SpotLight(glm::vec3 color = glm::vec3(0,0,0), float intensity = 0, Attenuation atten = Attenuation(), float cutoff = 0);
-
-  //virtual Shader* getShader() const override;
 
   virtual void update(float delta) override;
   virtual void addToEngine(CoreEngine* engine) override;

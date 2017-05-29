@@ -18,7 +18,6 @@ input(float delta)
   if(Input::get_downKey(m_speedModKey))
     amount *= m_speedMod;
 
-
   if(Input::get_downKey(m_forward))
     move(getTransform()->get_forward(), amount);
 

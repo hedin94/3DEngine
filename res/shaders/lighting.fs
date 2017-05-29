@@ -9,5 +9,5 @@ void main()
   vec4 color = texture2D(diffuse, texCoords);
   totalLight += calcLightingEffect(normal, worldPos0);
 
-  gl_FragColor =  color * totalLight; 
+  gl_FragColor =  color * totalLight;
 }
