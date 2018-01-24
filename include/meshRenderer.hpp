@@ -16,14 +16,8 @@ class MeshRenderer : public GameComponent
   MeshRenderer(Mesh* mesh, Material* material)
     : m_mesh(mesh), m_material(material) {};
 
-  ~MeshRenderer()
-  {
-    if(m_mesh)
-      delete m_mesh;
-    if(m_material)
-      delete m_material;
-  }
-
+  virtual ~MeshRenderer();
+  
   virtual void input(float delta) override;
   virtual void update(float delta) override;
   virtual void render(Shader* shader, RenderingEngine* renderingEngine) override;

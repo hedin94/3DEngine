@@ -1,0 +1,20 @@
+{
+    "plane" : {
+	"position" : [0,0,0],
+	"Transform" : {
+	    "scale" : [1,1,1],
+	    "pos" : [0,0,0],
+	    "rotate" : { "degrees" : -90, "axis" : [1,0,0] }
+	},
+	"MeshRenderer" : {
+	    "Mesh" : "plane.obj",
+	    "Material" : {
+		"diffuse" : "bricks2.jpg",
+		"normalMap" : "bricks2_normal.jpg",
+		"color" : [1,1,1],
+		"specularIntensity" : 1,
+		"specularPower" : 0
+	    }	    
+	}
+    }
+}

@@ -6,7 +6,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <SDL.h>
+#include <SDL2/SDL.h>
+#include <sstream>
 
 CoreEngine::
 CoreEngine(int width, int height, int framerate, Game* game, std::string title)
@@ -23,8 +24,6 @@ CoreEngine(int width, int height, int framerate, Game* game, std::string title)
   m_game->setEngine(this);
   m_game->init();
   m_input = Input::getInstance();
-
-  //std::cout << "ticks: " << m_ticks_per_frame << std::endl;
 }
 
 CoreEngine::
@@ -99,9 +98,9 @@ run()
       	{
 	  fps = (fps*smoothing) + (frames*(1-smoothing)); 
 
-	  std::string fpsString("fps: " + patch::to_string(frames) + "  avgFps: " + patch::to_string(fps));
-	  std::cout << std::setfill('\b') << std::setw(fpsString.length() * 2)
-      	   	    << fpsString;
+	  std::stringstream title;
+	  title << Window::getTitle() << " @ " << patch::to_string(frames) << " fps";
+	  SDL_SetWindowTitle(Window::get_window(), title.str().c_str());
 
       	  frames = 0;
       	  frameCounter = 0;

@@ -1,5 +1,14 @@
 #include "meshRenderer.hpp"
 
+MeshRenderer::
+~MeshRenderer()
+{
+  if(m_mesh)
+    delete m_mesh;
+  if(m_material)
+    delete m_material;
+}
+
 void
 MeshRenderer::
 input(float delta)

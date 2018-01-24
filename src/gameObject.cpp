@@ -5,11 +5,17 @@
 #include <algorithm>
 #include <iostream>
 
+// GameObject::
+// GameObject(const glm::vec3& pos, const glm::quat& rot, const glm::vec3& scale)
+// {
+//   m_transform = new Transform(pos, rot, scale);
+//   m_engine = nullptr;
+// }
+
 GameObject::
-GameObject(const glm::vec3& pos, const glm::quat& rot, const glm::vec3& scale)
-{
-  m_transform = new Transform(pos, rot, scale);
-  m_engine = nullptr;
+GameObject() {
+    m_transform = new Transform();
+    m_engine = nullptr;
 }
 
 GameObject::

@@ -9,10 +9,10 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+
 Shader::Shader(const std::string& filename)
 {
   DEBUG(std::string("Shader constructor for " + filename));
-  //Window::init();
   m_program = glCreateProgram();
 
   if (m_program == 0) 
@@ -55,26 +55,29 @@ void Shader::bind()
 
 void Shader::update(Transform* transform, RenderingEngine* engine, Material* material)
 {
-  //DEBUG("Shader::update");
-
   for(auto uniform : m_uniforms)
     {
       std::string name = uniform.first;
       std::string type = uniform.second.type;
 
       std::string prefix = name.substr(0, 2);
-      if(prefix == "T_") // Transform
+      
+      // Transform uniforms (prefix T_)
+      if(prefix == "T_")
 	{
 	  if(name == "T_model")
 	    setUniform(name, transform->getModel());
 	  else if(name == "T_MVP")
 	    setUniform(name, transform->getMVP(engine->getCamera()));
 	}
-      else if(prefix == "R_") // RenderingEngine
+      // RenderingEngine uniforms (prefix R_)
+      else if(prefix == "R_")
 	{
-	  setUniform(name, engine->getCamera()->getTransform()->get_pos());
-	}
-      else // Material
+	  if(name == "R_eyePos")
+	    setUniform(name, engine->getCamera()->getTransform()->get_pos());
+	}      
+      // Uniforms without prefix
+      else
 	{
 	  if(type == "sampler2D")
 	    {
@@ -106,7 +109,6 @@ void Shader::addUniform(const std::string& uniformName, const std::string& unifo
   int location = glGetUniformLocation(m_program, uniformName.c_str());  
   assert(location != GL_INVALID_VALUE);
   
-  //DEBUG(std::string("Adding uniform " + uniformName));
   m_uniforms.emplace(uniformName, UniformData(location, uniformType));
 }
 
@@ -195,25 +197,21 @@ void Shader::addFragmentShader(const std::string& text)
 
 void Shader::setUniform(const std::string& name, int value)
 {
-  //DEBUG(std::string("setUniform int " + name));
   glUniform1i(m_uniforms.at(name).location, value);
 }
 
 void Shader::setUniform(const std::string& name, float value)
 {
-  //DEBUG(std::string("setUniform float " + name));
   glUniform1f(m_uniforms.at(name).location, value);
 }
 
 void Shader::setUniform(const std::string& name, const glm::vec3& value)
 {
-  //DEBUG(std::string("setUniform vec3 " + name));
   glUniform3f(m_uniforms.at(name).location, value.x, value.y, value.z);
 }
 
 void Shader::setUniform(const std::string& name, const glm::mat4& value)
 {
-  //DEBUG(std::string("setUniform mat4 " + name));
   glUniformMatrix4fv(m_uniforms.at(name).location, 1, GL_FALSE, &(value[0][0]));
 }
 
