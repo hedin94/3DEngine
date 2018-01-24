@@ -21,26 +21,26 @@ public:
   void rotate(const float& angle, const glm::vec3& axis);
   void rotate(glm::quat rotation);
 
-  glm::vec3 get_right();
-  glm::vec3 get_left();
-  glm::vec3 get_up();
-  glm::vec3 get_down();
-  glm::vec3 get_forward();
-  glm::vec3 get_backward();
+  glm::vec3 getRight();
+  glm::vec3 getLeft();
+  glm::vec3 getUp();
+  glm::vec3 getDown();
+  glm::vec3 getForward();
+  glm::vec3 getBackward();
 
-  glm::vec3& get_pos() { return m_pos; }
-  glm::quat& get_rot() { return m_rot; }
-  glm::vec3& get_scale() { return m_scale; }
+  glm::vec3& getPos() { return m_pos; }
+  glm::quat& getRot() { return m_rot; }
+  glm::vec3& getScale() { return m_scale; }
 
-  glm::vec3 get_transformed_pos();
-  glm::quat get_transformed_rot(); 
+  glm::vec3 getTransformedPos();
+  glm::quat getTransformedRot(); 
 
   void lookAt(glm::vec3 point, glm::vec3 up);
-  glm::quat get_lookAt_rot(glm::vec3 point, glm::vec3 up);
+  glm::quat getLookAtRot(glm::vec3 point, glm::vec3 up);
 
-  void set_pos(const glm::vec3& pos) { m_pos = pos; } 
-  void set_rot(const glm::quat& rot);
-  void set_scale(const glm::vec3& scale) { m_scale = scale; }
+  void setPos(const glm::vec3& pos) { m_pos = pos; } 
+  void setRot(const glm::quat& rot);
+  void setScale(const glm::vec3& scale) { m_scale = scale; }
 
   void setParent(Transform* parent) { m_parent = parent; }
 

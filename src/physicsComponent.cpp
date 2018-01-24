@@ -19,7 +19,7 @@ PhysicsComponent::~PhysicsComponent()
 void PhysicsComponent::update(float delta)
 {
   glm::vec3 newPos =  m_physicsObject->getPos();
-  getTransform()->set_pos(newPos);
+  getTransform()->setPos(newPos);
 }
 
 void PhysicsComponent::addToEngine(CoreEngine* engine)
@@ -31,5 +31,5 @@ void PhysicsComponent::setParent(GameObject* parent)
 {
   GameComponent::setParent(parent);
   DEBUG("PhysicsComponent::setParent");
-  m_physicsObject->setPos(getTransform()->get_pos());
+  m_physicsObject->setPos(getTransform()->getPos());
 }

@@ -1,28 +1,13 @@
 #include "coreEngine.hpp"
 #include "window.hpp"
 
-#include "meshRenderer.hpp"
-#include "freeLook.hpp"
-#include "freeMove.hpp"
-#include "followComponent.hpp"
-#include "physicsComponent.hpp"
-#include "spawner.hpp"
 #include "gameObjectBuilder.hpp"
 
-#include "camera.hpp"
 #include "util.hpp"
-#include "lighting.hpp"
 #include "testing.hpp"
 #include "constants.hpp"
 
-#include "boundingSphere.hpp"
-#include "boundingBox.hpp"
-#include "plane.hpp"
-#include "physicsObject.hpp"
-
 #include "debug.hpp"
-
-#include "json/json.h"
 
 #include <iostream>
 #include <fstream>

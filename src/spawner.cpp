@@ -18,7 +18,7 @@ void Spawner::input(float delta)
 		{
 		    m_spawning = true;
 		    Transform * t = getTransform();
-		    spawn(t->get_pos()/*+ (t->get_forward() * 10.0f)*/, t->get_forward()*25.0f);
+		    spawn(t->getPos(), t->getForward()*25.0f);
 		}
 	}
     else
@@ -35,7 +35,7 @@ void Spawner::spawn(glm::vec3 pos, glm::vec3 vel)
 {
     std::cout << "Spawn sphere at " << pos << std::endl;
     GameObject* object = new GameObject();
-    object->getTransform()->set_pos(pos);
+    object->getTransform()->setPos(pos);
     object
 	->addComponent(new MeshRenderer(new Mesh("sphere2.obj"), 
 					new Material(new Texture("bricks3.jpg"), 

@@ -32,7 +32,7 @@ void DirectionalLight::addToEngine(CoreEngine* engine)
 
 void DirectionalLight::update(float delta)
 {
-  direction = getTransform()->get_forward();
+  direction = getTransform()->getForward();
 }
 
 void DirectionalLight::setParent(GameObject* parent)
@@ -69,7 +69,7 @@ void PointLight::addToEngine(CoreEngine* engine)
 
 void PointLight::update(float delta)
 {
-  position = getTransform()->get_pos();
+  position = getTransform()->getPos();
 }
 
 void PointLight::setParent(GameObject* parent)
@@ -93,8 +93,8 @@ void SpotLight::addToEngine(CoreEngine* engine)
 
 void SpotLight::update(float delta)
 {
-  position = getTransform()->get_pos();
-  direction = getTransform()->get_forward();
+  position = getTransform()->getPos();
+  direction = getTransform()->getForward();
 }
 
 void SpotLight::setParent(GameObject* parent)

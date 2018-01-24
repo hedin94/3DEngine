@@ -6,10 +6,6 @@
 #include "transform.hpp"
 #include "json/json.h"
 
-#include <vector>
-#include <set>
-#include <glm/glm.hpp>
-
 class GameObjectBuilder {
 public:
     GameObjectBuilder();
@@ -27,25 +23,4 @@ private:
     const std::string PATH = "./res/";
 };
 
-
-
-class SupportedGameComponents {
-public:
-    static SupportedGameComponents& getInstance(){
-	static SupportedGameComponents instance;
-	return instance;
-    }
-
-    SupportedGameComponents(SupportedGameComponents const&) = delete;
-    void operator=(SupportedGameComponents const&) = delete;
-
-    static bool isSupported(const std::string& compName);
-
-private:
-    static std::set<std::string> components;
-    static const std::string PATH;
-
-    SupportedGameComponents();
-    virtual ~SupportedGameComponents();
-};
 #endif // _GAME_OBJECT_BUILDER_H_

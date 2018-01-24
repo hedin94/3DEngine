@@ -74,7 +74,7 @@ void Shader::update(Transform* transform, RenderingEngine* engine, Material* mat
       else if(prefix == "R_")
 	{
 	  if(name == "R_eyePos")
-	    setUniform(name, engine->getCamera()->getTransform()->get_pos());
+	    setUniform(name, engine->getCamera()->getTransform()->getPos());
 	}      
       // Uniforms without prefix
       else
@@ -225,7 +225,7 @@ void Shader::setUniform(const std::string& name, DirectionalLight* directionalLi
 {
   setUniform(name + ".base.color", directionalLight->color);
   setUniform(name + ".base.intensity", directionalLight->intensity);
-  setUniform(name + ".direction", directionalLight->getTransform()->get_forward());
+  setUniform(name + ".direction", directionalLight->getTransform()->getForward());
 }
 
 void Shader::setUniform(const std::string& name, PointLight* pointLight)
@@ -235,7 +235,7 @@ void Shader::setUniform(const std::string& name, PointLight* pointLight)
   setUniform(name + ".atten.constant", pointLight->atten.constant);
   setUniform(name + ".atten.linear", pointLight->atten.linear);
   setUniform(name + ".atten.exponent", pointLight->atten.exponent);
-  setUniform(name + ".position", pointLight->getTransform()->get_pos());
+  setUniform(name + ".position", pointLight->getTransform()->getPos());
   setUniform(name + ".range", pointLight->range);
 }
 
@@ -246,9 +246,9 @@ void Shader::setUniform(const std::string& name, SpotLight* spotLight)
   setUniform(name + ".pointLight.atten.constant", spotLight->atten.constant);
   setUniform(name + ".pointLight.atten.linear", spotLight->atten.linear);
   setUniform(name + ".pointLight.atten.exponent", spotLight->atten.exponent);
-  setUniform(name + ".pointLight.position", spotLight->getTransform()->get_pos());
+  setUniform(name + ".pointLight.position", spotLight->getTransform()->getPos());
   setUniform(name + ".pointLight.range", spotLight->range);
-  setUniform(name + ".direction", spotLight->getTransform()->get_forward());
+  setUniform(name + ".direction", spotLight->getTransform()->getForward());
   setUniform(name + ".cutoff", spotLight->cutoff);
 }
 

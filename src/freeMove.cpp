@@ -19,23 +19,23 @@ input(float delta)
     amount *= m_speedMod;
 
   if(Input::get_downKey(m_forward))
-    move(getTransform()->get_forward(), amount);
+    move(getTransform()->getForward(), amount);
 
   if(Input::get_downKey(m_backward))
-    move(getTransform()->get_backward(), amount);
+    move(getTransform()->getBackward(), amount);
 
   if(Input::get_downKey(m_left))
-    move(getTransform()->get_right(), amount);
+    move(getTransform()->getRight(), amount);
 
   if(Input::get_downKey(m_right))
-    move(getTransform()->get_left(), amount);
+    move(getTransform()->getLeft(), amount);
 
 
   if(Input::get_downKey(SDLK_SPACE))
-    move(getTransform()->get_up(), amount);
+    move(getTransform()->getUp(), amount);
 
   if(Input::get_downKey(SDLK_LCTRL))
-    move(getTransform()->get_down(), amount);
+    move(getTransform()->getDown(), amount);
   
 }
 
@@ -50,5 +50,5 @@ void
 FreeMove::
 move(glm::vec3 direction, float amount)
 {
-  getTransform()->get_pos() += direction * amount;
+  getTransform()->getPos() += direction * amount;
 }

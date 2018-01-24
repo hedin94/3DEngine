@@ -63,7 +63,7 @@ buildTransform(Json::Value transform) {
 	glm::vec3 pos = glm::vec3{jsonPos[0].asFloat(),
 				  jsonPos[1].asFloat(),
 				  jsonPos[2].asFloat()};
-	t->set_pos(pos);
+	t->setPos(pos);
     }
     
     if (!jsonAxis.empty() && !jsonAngle.empty()) {
@@ -77,7 +77,7 @@ buildTransform(Json::Value transform) {
 	glm::vec3 scale = glm::vec3{jsonScale[0].asFloat(),
 				    jsonScale[1].asFloat(),
 				    jsonScale[2].asFloat()};
-	t->set_scale(scale);
+	t->setScale(scale);
     }
     
     return t;
@@ -93,34 +93,4 @@ GameObject*
 GameObjectBuilder::
 get(){
     return root;
-}
-
-
-std::set<std::string> SupportedGameComponents::components;
-const std::string SupportedGameComponents::PATH = "./res/components.txt";
-
-SupportedGameComponents::
-SupportedGameComponents(){
-    std::fstream file(PATH);
-    if(!file){
-	std::cerr << "ERROR: could not read " << PATH  << std::endl;
-	return;
-    }
-
-    std::string compName;
-    while(getline(file, compName)){
-	components.emplace(compName);
-    }
-
-    file.close();
-}
-
-SupportedGameComponents::
-~SupportedGameComponents() {
-}
-
-bool
-SupportedGameComponents::
-isSupported(const std::string& compName){
-    return components.find(compName) != components.end();
 }

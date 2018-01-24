@@ -43,7 +43,7 @@ input(float delta)
       
       // Rotate around local x-axis (vector pointing to the right of the object)
       if(rotY)
-       	getTransform()->rotate(rotY * m_sensitivity, getTransform()->get_right());
+       	getTransform()->rotate(rotY * m_sensitivity, getTransform()->getRight());
 
       // Rotate around y-axis
       if(rotX)

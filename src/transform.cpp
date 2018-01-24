@@ -55,49 +55,49 @@ void Transform::rotate(glm::quat rotation)
   m_rot = glm::normalize(rotation * m_rot);
 }
 
-glm::vec3 Transform::get_right()
+glm::vec3 Transform::getRight()
 {
   return Transform::rotate(glm::vec3(1,0,0), m_rot);
 }
 
-glm::vec3 Transform::get_left()
+glm::vec3 Transform::getLeft()
 {
   return Transform::rotate(glm::vec3(-1,0,0), m_rot);
 }
 
-glm::vec3 Transform::get_up()
+glm::vec3 Transform::getUp()
 {
   return Transform::rotate(glm::vec3(0,1,0), m_rot);
 }
 
-glm::vec3 Transform::get_down()
+glm::vec3 Transform::getDown()
 {
   return Transform::rotate(glm::vec3(0,-1,0), m_rot);
 }
 
-glm::vec3 Transform::get_forward()
+glm::vec3 Transform::getForward()
 {
   return Transform::rotate(glm::vec3(0,0,1), m_rot);
 }
 
-glm::vec3 Transform::get_backward()
+glm::vec3 Transform::getBackward()
 {
   return Transform::rotate(glm::vec3(0,0,-1), m_rot);
 }
 
-glm::vec3 Transform::get_transformed_pos()
+glm::vec3 Transform::getTransformedPos()
 {
   return transform(m_parentMatrix, m_pos);
 }
 
-glm::quat Transform::get_transformed_rot() 
+glm::quat Transform::getTransformedRot() 
 {
   glm::quat parentRot = glm::quat(0, 0, 0, 1);
 
   if(m_parent != nullptr)
-    parentRot = m_parent->get_transformed_rot();
+    parentRot = m_parent->getTransformedRot();
 
-  return parentRot * get_rot();
+  return parentRot * getRot();
 }
 
 // glm::vec3& Transform::get_transformed_scale()
@@ -107,15 +107,15 @@ glm::quat Transform::get_transformed_rot()
 
 void Transform::lookAt(glm::vec3 point, glm::vec3 up)
 {
-  m_rot = get_lookAt_rot(point, up);
+  m_rot = getLookAtRot(point, up);
 }
 
-glm::quat Transform::get_lookAt_rot(glm::vec3 point, glm::vec3 up)
+glm::quat Transform::getLookAtRot(glm::vec3 point, glm::vec3 up)
 {
   return glm::quat(initRotation(glm::mat4(), glm::normalize(point - m_pos), up));
 }
 
-void Transform::set_rot(const glm::quat& rot)
+void Transform::setRot(const glm::quat& rot)
 {
   m_rot = rot; 
 }  
