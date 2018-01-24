@@ -1,0 +1,22 @@
+{
+    "transform" : {
+	"pos" : [0, 7, -15]
+    },
+    "components" : [
+	{
+	    "type" : "CameraComponent",
+	    "fieldOfView" : 70.0,
+	    "near" : 1.0,
+	    "far" : 1000.0
+	},
+	{
+	    "type" : "FreeLook",
+	    "sensitivity" : 0.01
+	},
+	{
+	    "type" : "FreeMove",
+	    "speed" : 0.015,
+	    "speedMod" : 3.0 
+	}
+    ]
+}
