@@ -4,7 +4,7 @@
 Game::
 Game()
 {
-  m_root = nullptr;
+    m_root = nullptr;
 }
 
 Game::
@@ -16,39 +16,39 @@ void
 Game::
 input(float delta)
 {
-  getRootObject()->inputAll(delta);
+    getRootObject()->inputAll(delta);
 }
 
 void 
 Game::
 update(float delta)
 {
-  getRootObject()->updateAll(delta);
+    getRootObject()->updateAll(delta);
 }
 
 void 
 Game::
 render(RenderingEngine* renderingEngine)
 {
-  // DEBUG("Game::render");
-  renderingEngine->render(getRootObject());
+    // DEBUG("Game::render");
+    renderingEngine->render(getRootObject());
 }
 
 GameObject* 
 Game::
 getRootObject()
 {
-  if(m_root == nullptr)
-    m_root = new GameObject();
+    if(m_root == nullptr)
+	m_root = new GameObject();
 
-  return m_root;
+    return m_root;
 }
 
 void 
 Game::
 setEngine(CoreEngine* engine)
 {
-  getRootObject()->setEngine(engine); 
+    getRootObject()->setEngine(engine); 
 }
 
 
@@ -56,6 +56,6 @@ void
 Game::
 addToScene(GameObject* child)
 {
-  DEBUG("Game::addToScene");
-  getRootObject()->addChild(child); 
+    DEBUG("Game::addToScene");
+    getRootObject()->addChild(child); 
 }

@@ -21,120 +21,209 @@
 			"dispMapScale" : 0.04,
 			"dispMapOffset" : -0.6
 		    }
+		},
+		{
+		    "type" : "PhysicsComponent",
+		    "vel" : [0, 0, 0],
+		    "mass" : 100000000000,
+		    "collider" : {
+			"type" : "plane",
+			"normal" : [0, 1, 0],
+			"offset" : 1
+		    },
+		    "movable" : false
 		}
 	    ]
-	}// ,
-	// //plane 2
-	// {
-	//     "transform" : {
-    	// 	"pos" : [0, 7, 8],
-    	// 	"axis" : [1, 0, 0],
-    	// 	"angle" : -90
-	//     },
-	//     "components" : [
-	// 	{
-	// 	    "type" : "MeshRenderer",
-	// 	    "filename" : "plane3.obj",
-	// 	    "material" : {
-	// 		"diffuse" : "bricks2.jpg",
-	// 		"color" : [1, 1, 1],
-	// 		"specularIntensity" : 1,
-	// 		"specularPower" : 0,
-	// 		"normalMap" : "bricks2_normal.jpg",
-	// 		"dispMap" : "bricks2_disp.jpg",
-	// 		"dispMapScale" : 0.04,
-	// 		"dispMapOffset" : -0.6
-	// 	    }
-	// 	}
-	//     ]
-	// },
-	// //plane 3
-	// {
-	//     "transform" : {
-    	// 	"pos" : [0, 15, 0],
-    	// 	"axis" : [0, 0, 1],
-    	// 	"angle" : 180
-	//     },
-	//     "components" : [
-	// 	{
-	// 	    "type" : "MeshRenderer",
-	// 	    "filename" : "plane3.obj",
-	// 	    "material" : {
-	// 		"diffuse" : "bricks2.jpg",
-	// 		"color" : [1, 1, 1],
-	// 		"specularIntensity" : 1,
-	// 		"specularPower" : 0,
-	// 		"normalMap" : "bricks2_normal.jpg",
-	// 		"dispMap" : "bricks2_disp.jpg",
-	// 		"dispMapScale" : 0.04,
-	// 		"dispMapOffset" : -0.6
-	// 	    }
-	// 	}	
-	//     ]
-	// }
-	//,
+	},
+	//plane 2
+	{
+	    "transform" : {
+    		"pos" : [0, 7, 8],
+    		"axis" : [1, 0, 0],
+    		"angle" : -90
+	    },
+	    "components" : [
+		{
+		    "type" : "MeshRenderer",
+		    "filename" : "plane3.obj",
+		    "material" : {
+			"diffuse" : "bricks2.jpg",
+			"color" : [1, 1, 1],
+			"specularIntensity" : 1,
+			"specularPower" : 0,
+			"normalMap" : "bricks2_normal.jpg",
+			"dispMap" : "bricks2_disp.jpg",
+			"dispMapScale" : 0.04,
+			"dispMapOffset" : -0.6
+		    }
+		},
+		{
+		    "type" : "PhysicsComponent",
+		    "vel" : [0, 0, 0],
+		    "mass" : 1000000,
+		    "collider" : {
+			"type" : "plane",
+			"normal" : [0, 0, 1],
+			"offset" : 8
+		    },
+		    "movable" : false
+		}
+	    ]
+	},
+	//plane 3
+	{
+	    "transform" : {
+    		"pos" : [0, 15, 0],
+    		"axis" : [0, 0, 1],
+    		"angle" : 180
+	    },
+	    "components" : [
+		{
+		    "type" : "MeshRenderer",
+		    "filename" : "plane3.obj",
+		    "material" : {
+			"diffuse" : "bricks2.jpg",
+			"color" : [1, 1, 1],
+			"specularIntensity" : 1,
+			"specularPower" : 0,
+			"normalMap" : "bricks2_normal.jpg",
+			"dispMap" : "bricks2_disp.jpg",
+			"dispMapScale" : 0.04,
+			"dispMapOffset" : -0.6
+		    }
+		},
+		{
+		    "type" : "PhysicsComponent",
+		    "vel" : [0, 0, 0],
+		    "mass" : 1000000,
+		    "collider" : {
+			"type" : "plane",
+			"normal" : [0, -1, 0],
+			"offset" : -12
+		    },
+		    "movable" : false
+		}	
+	    ]
+	},
 	//plane 4
-	// {
-	//     "transform" : {
-    	// 	"pos" : [-8, 7, 0],
-    	// 	"axis" : [0, 0, 1],
-    	// 	"angle" : 270
-	//     },
-	//     "children" : [
-	// 	{
-	// 	    "transform" : {
-    	// 		"axis" : [1, 0, 0],
-    	// 		"angle" : 90
-	// 	    }, 
-	// 	    "components" : [
-	// 		{
-	// 		    "type" : "MeshRenderer",
-	// 		    "filename" : "plane3.obj",
-	// 		    "material" : {
-	// 			"diffuse" : "bricks2.jpg",
-	// 			"color" : [1, 1, 1],
-	// 			"specularIntensity" : 1,
-	// 			"specularPower" : 0,
-	// 			"normalMap" : "bricks2_normal.jpg",
-	// 			"dispMap" : "bricks2_disp.jpg",
-	// 			"dispMapScale" : 0.04,
-	// 			"dispMapOffset" : -0.6
-	// 		    }
-	// 		}
-	// 	    ]
-	// 	}
-	//     ]
-	// },
+	{
+	    "transform" : {
+    	    	"pos" : [-8, 7, 0],
+    	    	"axis" : [1, 0, 0],
+    	    	"angle" : 90
+	    },
+	    "children" : [
+		{
+		    "transform" : {
+    			"axis" : [0, 0, 1],
+    			"angle" : 270
+		    }, 
+		    "components" : [
+			{
+			    "type" : "MeshRenderer",
+			    "filename" : "plane3.obj",
+			    "material" : {
+				"diffuse" : "bricks2.jpg",
+				"color" : [1, 1, 1],
+				"specularIntensity" : 1,
+				"specularPower" : 0,
+				"normalMap" : "bricks2_normal.jpg",
+				"dispMap" : "bricks2_disp.jpg",
+				"dispMapScale" : 0.04,
+				"dispMapOffset" : -0.6
+			    }
+			},
+			{
+			    "type" : "PhysicsComponent",
+			    "vel" : [0, 0, 0],
+			    "mass" : 1000000,
+			    "collider" : {
+				"type" : "plane",
+				"normal" : [-1, 0, 0],
+				"offset" : 8
+			    },
+			    "movable" : false
+			}
+		    ]
+		}
+	    ]
+	},
 	//plane 5
+	{
+	    "transform" : {
+    		"pos" : [8, 7, 0],
+		"axis" : [1, 0, 0],
+		"angle" : 90
+	    },
+	    "children" : [
+		{
+		    "transform" : {
+    			"axis" : [0, 0, 1],
+    			"angle" : 90
+		    },
+		    "components" : [
+			{
+			    "type" : "MeshRenderer",
+			    "filename" : "plane3.obj",
+			    "material" : {
+				"diffuse" : "bricks2.jpg",
+				"color" : [1, 1, 1],
+				"specularIntensity" : 1,
+				"specularPower" : 0,
+				"normalMap" : "bricks2_normal.jpg",
+				"dispMap" : "bricks2_disp.jpg",
+				"dispMapScale" : 0.04,
+				"dispMapOffset" : -0.6
+			    }
+			},
+			{
+			    "type" : "PhysicsComponent",
+			    "vel" : [0, 0, 0],
+			    "mass" : 100000000000,
+			    "collider" : {
+				"type" : "plane",
+				"normal" : [1, 0, 0],
+				"offset" : 8
+			    },
+			    "movable" : false
+			}
+		    ]
+		}
+	    ]
+	}//,
+	//plane 6
 	// {
 	//     "transform" : {
-    	// 	"pos" : [8, 7, 0],
-	// 	"axis" : [0, 0, 1],
+    	// 	"pos" : [0, 7, -8],
+	// 	"axis" : [1, 0, 0],
 	// 	"angle" : 90
 	//     },
-	//     "children" : [
+	//     "components" : [
 	// 	{
-	// 	    "transform" : {
-    	// 		"axis" : [1, 0, 0],
-    	// 		"angle" : 90
-	// 	    },
-	// 	    "components" : [
-	// 		{
-	// 		    "type" : "MeshRenderer",
-	// 		    "filename" : "plane3.obj",
-	// 		    "material" : {
-	// 			"diffuse" : "bricks2.jpg",
-	// 			"color" : [1, 1, 1],
-	// 			"specularIntensity" : 1,
-	// 			"specularPower" : 0,
-	// 			"normalMap" : "bricks2_normal.jpg",
-	// 			"dispMap" : "bricks2_disp.jpg",
-	// 			"dispMapScale" : 0.04,
-	// 			"dispMapOffset" : -0.6
-	// 		    }
-	// 		}
-	// 	    ]
-	// 	}
+	// 	    "type" : "MeshRenderer",
+	// 	    "filename" : "plane3.obj",
+	// 	    "material" : {
+	// 		"diffuse" : "bricks2.jpg",
+	// 		"color" : [1, 1, 1],
+	// 		"specularIntensity" : 1,
+	// 		"specularPower" : 0,
+	// 		"normalMap" : "bricks2_normal.jpg",
+	// 		"dispMap" : "bricks2_disp.jpg",
+	// 		"dispMapScale" : 0.04,
+	// 		"dispMapOffset" : -0.6
+	// 	    }
+	// 	},
+	// {
+	//     "type" : "PhysicsComponent",
+	//     "vel" : [0, 0, 0],
+	//     "mass" : 1000000,
+	//     "collider" : {
+	// 	"type" : "plane",
+	// 	"normal" : [0, 0, 1],
+	// 	"offset" : -8
+	//     },
+	//     "movable" : false
+	// }
 	//     ]
 	// }
     ]

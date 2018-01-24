@@ -4,6 +4,8 @@
 #include "freeMove.hpp"
 #include "meshRenderer.hpp"
 #include "lighting.hpp"
+#include "physicsComponent.hpp"
+#include "colliderFactory.hpp"
 
 #include <iostream>
 
@@ -74,6 +76,19 @@ getComponent(Json::Value json) {
 
     if (type == "SpotLight") {
 	return nullptr;
+    }
+
+    if (type == "PhysicsComponent") {
+	Json::Value jsonVel = json["vel"];
+	glm::vec3 vel;
+	if (!jsonVel.empty())
+	    vel = glm::vec3{jsonVel[0].asFloat(),
+			    jsonVel[1].asFloat(),
+			    jsonVel[2].asFloat()};
+	float mass = json.get("mass", 1).asFloat();
+	Collider* collider = ColliderFactory::getCollider(json["collider"]);
+	bool movable = json.get("movable", true).asBool();
+	return new PhysicsComponent(vel, mass, collider, movable);
     }
 
     return nullptr;
