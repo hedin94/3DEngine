@@ -67,15 +67,53 @@ getComponent(Json::Value json) {
     }
 
     if (type == "DirectionalLight") {
-	return nullptr;
+	Json::Value jsonColor = json["color"];
+	glm::vec3 color{0, 0, 0};
+	if (!jsonColor.empty())
+	    color = glm::vec3{jsonColor[0].asFloat(),
+			      jsonColor[1].asFloat(),
+			      jsonColor[2].asFloat()};
+	float intensity = json.get("intensity", 0).asFloat();
+	return new DirectionalLight(color, intensity);
     }
 
     if (type == "PointLight") {
-	return nullptr;
+	Json::Value jsonColor = json["color"];
+	glm::vec3 color{0, 0, 0};
+	if (!jsonColor.empty())
+	    color = glm::vec3{jsonColor[0].asFloat(),
+			      jsonColor[1].asFloat(),
+			      jsonColor[2].asFloat()};
+	float intensity = json.get("intensity", 0).asFloat();
+	Json::Value jsonAttenuation = json["attenuation"];
+	Attenuation attenuation;
+	if (!jsonAttenuation.empty()) {
+	    attenuation.constant = jsonAttenuation.get("constant", 0).asFloat();
+	    attenuation.linear = jsonAttenuation.get("linear", 0).asFloat();
+	    attenuation.exponent = jsonAttenuation.get("exponent", 0).asFloat();
+	}
+
+	return new PointLight(color, intensity, attenuation);
     }
 
-    if (type == "SpotLight") {
-	return nullptr;
+    if (type == "SpotLight") {	
+	Json::Value jsonColor = json["color"];
+	glm::vec3 color{0, 0, 0};
+	if (!jsonColor.empty())
+	    color = glm::vec3{jsonColor[0].asFloat(),
+			      jsonColor[1].asFloat(),
+			      jsonColor[2].asFloat()};
+	float intensity = json.get("intensity", 0).asFloat();
+	Json::Value jsonAttenuation = json["attenuation"];
+	Attenuation attenuation;
+	if (!jsonAttenuation.empty()) {
+	    attenuation.constant = jsonAttenuation.get("constant", 0).asFloat();
+	    attenuation.linear = jsonAttenuation.get("linear", 0).asFloat();
+	    attenuation.exponent = jsonAttenuation.get("exponent", 0).asFloat();
+	}
+	float cutoff = json.get("cutoff", 0).asFloat();
+
+	return new SpotLight(color, intensity, attenuation, cutoff);
     }
 
     if (type == "PhysicsComponent") {
