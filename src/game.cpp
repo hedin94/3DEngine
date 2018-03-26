@@ -10,6 +10,7 @@ Game()
 Game::
 ~Game()
 {
+    if (m_root) delete m_root;
 }
 
 void 

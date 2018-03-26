@@ -9,17 +9,17 @@
 	    "type" : "MeshRenderer",
 	    "filename" : "monkey3.obj",
 	    "material" : {
-		//"diffuse" : "184.jpg",
 		"diffuse" : "default.jpg",
 		"color" : [1, 1, 1],
 		"specularIntensity" : 2,
 		"specularPower" : 2,
-		//"normalMap" : "184_norm.jpg"
 		"normalMap" : "default_normal.jpg"
 	    }
+	},
+	{
+	    "type" : "FollowComponent",
+	    "distance" : 10.0,
+	    "target" : "camera"
 	}
-	
     ]
 }
-
-

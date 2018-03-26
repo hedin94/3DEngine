@@ -11,11 +11,11 @@ public:
 	return instance;
     }
     
-    GameComponentFactory(GameComponentFactory const&) = delete;
-    void operator=(GameComponentFactory const&) = delete;
+    GameComponentFactory(const GameComponentFactory &) = delete;
+    void operator=(const GameComponentFactory &) = delete;
 
 
-    static GameComponent* getComponent(Json::Value);
+    static GameComponent* getComponent(Json::Value, bool&);
 
 private:
     GameComponentFactory();

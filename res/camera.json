@@ -1,22 +1,46 @@
 {
-    "transform" : {
-	"pos" : [0, 7, -15]
-    },
-    "components" : [
+    "children" : [
 	{
-	    "type" : "CameraComponent",
-	    "fieldOfView" : 70.0,
-	    "near" : 1.0,
-	    "far" : 1000.0
+	    "id" : "ref-object"
 	},
 	{
-	    "type" : "FreeLook",
-	    "sensitivity" : 0.01
-	},
-	{
-	    "type" : "FreeMove",
-	    "speed" : 0.015,
-	    "speedMod" : 3.0 
+	    "id" : "camera",
+	    "transform" : {
+		"pos" : [0, 7, -15]
+	    },
+	    "ref" : "ref-object",
+	    "components" : [
+		{
+		    "type" : "CameraComponent",
+		    "fieldOfView" : 70.0,
+		    "near" : 1.0,
+		    "far" : 1000.0
+		},
+		{
+		    "type" : "FreeLook",
+		    "sensitivity" : 0.01
+		},
+		{
+		    "type" : "FreeMove",
+		    "speed" : 0.015,
+		    "speedMod" : 3.0 
+		},
+		{
+		    "type" : "Spawner",
+		    "spawnKey" : "f"
+		}// ,
+		// {
+		//     "type" : "SpotLight",
+		//     "color" : [1, 1, 1],
+		//     "intensity" : 10000,
+		//     "attenuation" : {
+		// 	"constant" : 0,
+		// 	"linear" : 0,
+		// 	"quadratic" : 100
+		//     },
+		//     "cutoff" : 20
+		// }
+	    ]
 	}
     ]
 }

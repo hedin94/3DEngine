@@ -1,6 +1,7 @@
 #include "lighting.hpp"
 #include "debug.hpp"
 #include "shader.hpp"
+#include "util.hpp"
 
 #include <glm/gtx/quaternion.hpp>
 #include <algorithm>
@@ -41,21 +42,19 @@ void DirectionalLight::setParent(GameObject* parent)
 }
 
 
-Attenuation::Attenuation(float constant_, float linear_, float exponent_)
-  : constant(constant_), linear(linear_), exponent(exponent_) {}
+Attenuation::Attenuation(float constant_, float linear_, float quadratic_)
+  : constant(constant_), linear(linear_), quadratic(quadratic_) {}
 
 static const int COLOR_DEPTH = 256;
 
 PointLight::PointLight(glm::vec3 color, float intensity, Attenuation atten_)
   : BaseLight(color, intensity), position(glm::vec3(0,0,0)), atten(atten_)
 {
-  float a = atten.exponent;
+  float e = 0.001;
+  float a = atten.quadratic;
   float b = atten.linear;
   float c = atten.constant - COLOR_DEPTH * intensity * std::max(color.x, std::max(color.y, color.z));
-  float e = 0.000001;
   range = (-b + std::sqrt(b*b - (4*a*c)))/(2*a);
-  //range = (std::sqrt(-4*a*c*e*e + 4*a*e + b*b*e*e) - b*e) / (2*a*e);
-  //range = std::abs((1 - c*e)/(b*e));
   std::cout << "PointLight Range: " << range << std::endl;
   if(m_shader != nullptr)
     delete m_shader;
@@ -79,8 +78,10 @@ void PointLight::setParent(GameObject* parent)
 
 
 SpotLight::SpotLight(glm::vec3 color, float intensity, Attenuation atten, float viewAngle)
-    : PointLight(color, intensity, atten), cutoff(std::cos(viewAngle))
+    : PointLight(color, intensity, atten), cutoff(std::cos(toRad(viewAngle)))
 {
+    std::cout << "SpotLight:\n"
+	      << "cutoff: " << cutoff << std::endl;
   if(m_shader != nullptr)
     delete m_shader;
   m_shader = new Shader("forward-spot");

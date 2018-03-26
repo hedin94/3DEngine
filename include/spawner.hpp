@@ -7,7 +7,7 @@
 class Spawner : public GameComponent
 {
 public:
-  Spawner(Game* game, Uint8 spawnKey = SDLK_f);
+  Spawner(Uint8 spawnKey = SDLK_f);
   virtual ~Spawner();
 
   virtual void input(float delta) override;
@@ -18,7 +18,6 @@ private:
   void spawn(glm::vec3 pos, glm::vec3 vel);
 
   Uint8 m_spawnKey;
-  Game* m_game;
   bool m_spawning = false;
 };
 

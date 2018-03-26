@@ -16,9 +16,7 @@ class GameComponent;
 class GameObject
 {
 public:
-    // GameObject(const glm::vec3& pos = glm::vec3(0,0,0), const glm::quat& rot = glm::quat(1.0f,0.0f,0.0f,0.0f), const glm::vec3& scale = glm::vec3(1.0f, 1.0f, 1.0f));
     GameObject();
-
     virtual ~GameObject();
 
     GameObject* addChild(GameObject* child);
@@ -37,7 +35,14 @@ public:
     void       setTransform(Transform* transform) { m_transform = transform; }
     std::vector<GameObject*> getAttached();
 
+    GameObject* getRoot();
+    GameObject* getParent() const { return m_parent; }
+    void        setParent(GameObject* parent) { m_parent = parent; }
+
+    void dumpComponents() const;
+
 private:
+    GameObject* m_parent;
     std::vector<GameObject*> m_children;
     std::vector<GameComponent*> m_components;
     Transform* m_transform;

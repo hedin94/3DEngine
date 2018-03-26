@@ -19,3 +19,7 @@ Transform* GameComponent::getTransform()
 {
   return m_parent->getTransform();
 }
+
+std::string GameComponent::str() const {
+    return "GameComponent";
+}

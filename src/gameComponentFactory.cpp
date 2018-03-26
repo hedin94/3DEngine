@@ -1,4 +1,6 @@
 #include "gameComponentFactory.hpp"
+#include "gameObjectManager.hpp"
+
 #include "camera.hpp"
 #include "freeLook.hpp"
 #include "freeMove.hpp"
@@ -6,8 +8,12 @@
 #include "lighting.hpp"
 #include "physicsComponent.hpp"
 #include "colliderFactory.hpp"
+#include "spawner.hpp"
+#include "followComponent.hpp"
 
 #include <iostream>
+#include <SDL.h>
+#include "sdlKey.hpp"
 
 GameComponentFactory::GameComponentFactory(){
 }
@@ -17,7 +23,7 @@ GameComponentFactory::~GameComponentFactory(){
 
 GameComponent*
 GameComponentFactory::
-getComponent(Json::Value json) {
+getComponent(Json::Value json, bool& pending) {
     std::string type = json["type"].asString();
     if (type == "CameraComponent") {
 	float fieldOfView = json.get("fieldOfView", 90).asFloat();
@@ -39,7 +45,6 @@ getComponent(Json::Value json) {
 
     if (type == "MeshRenderer") {
 	std::string filename = json.get("filename", "").asString();
-	std::cout << "GameComponentFactory::getComponent(MeshRenderer): " << filename << std::endl;
 	Json::Value jsonMaterial = json["material"];
 	std::string diffuse = jsonMaterial.get("diffuse", "").asString();
 	Json::Value jsonColor = jsonMaterial["color"];
@@ -90,7 +95,7 @@ getComponent(Json::Value json) {
 	if (!jsonAttenuation.empty()) {
 	    attenuation.constant = jsonAttenuation.get("constant", 0).asFloat();
 	    attenuation.linear = jsonAttenuation.get("linear", 0).asFloat();
-	    attenuation.exponent = jsonAttenuation.get("exponent", 0).asFloat();
+	    attenuation.quadratic = jsonAttenuation.get("quadratic", 0).asFloat();
 	}
 
 	return new PointLight(color, intensity, attenuation);
@@ -109,7 +114,7 @@ getComponent(Json::Value json) {
 	if (!jsonAttenuation.empty()) {
 	    attenuation.constant = jsonAttenuation.get("constant", 0).asFloat();
 	    attenuation.linear = jsonAttenuation.get("linear", 0).asFloat();
-	    attenuation.exponent = jsonAttenuation.get("exponent", 0).asFloat();
+	    attenuation.quadratic = jsonAttenuation.get("quadratic", 0).asFloat();
 	}
 	float cutoff = json.get("cutoff", 0).asFloat();
 
@@ -127,6 +132,22 @@ getComponent(Json::Value json) {
 	Collider* collider = ColliderFactory::getCollider(json["collider"]);
 	bool movable = json.get("movable", true).asBool();
 	return new PhysicsComponent(vel, mass, collider, movable);
+    }
+
+    if (type == "Spawner") {
+	std::string spawnKey = json.get("spawnKey", "f").asString();
+	std::cout << "spawnkey: " << spawnKey
+		  << "\t" << getSDLKey(spawnKey) << std::endl;
+	return new Spawner(getSDLKey(spawnKey));
+    }
+
+    if (type == "FollowComponent") {
+	float distance = json.get("distance", 1.0f).asFloat();
+	std::string targetId = json.get("target", "").asString();
+	GameObject* target = GameObjectManager::getObject(targetId);
+	if (target)
+	    return new FollowComponent(distance, target);
+	else pending = true;
     }
 
     return nullptr;

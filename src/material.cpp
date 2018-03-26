@@ -25,6 +25,10 @@ Material::~Material()
   m_textureMap.clear();
 }
 
+bool Material::floatExists(const std::string& name) const {
+    return m_floatMap.find(name) != m_floatMap.end();
+}
+
 float Material::getFloat(const std::string& name) const
 {
   std::map<std::string, float>::const_iterator it = m_floatMap.find(name);

@@ -4,6 +4,7 @@
 #include <glm/glm.hpp>
 
 #include "gameComponentFactory.hpp"
+#include "gameObjectManager.hpp"
 #include "util.hpp"
 #include <glm/gtx/rotate_vector.hpp>
 
@@ -29,6 +30,20 @@ void
 GameObjectBuilder::
 readJSON(Json::Value json) {
     root = new GameObject();
+
+    std::string id{};
+    if (json.isMember("id")) {
+	id = json["id"].asString();
+	GameObjectManager::addObject(id, root);
+    }
+
+    if (json.isMember("ref")) {
+	std::string refName = json["ref"].asString();
+	GameObject* ref = GameObjectManager::getObject(refName);
+	if (ref) {
+	    std::cout << id << " referencing " << refName << std::endl;
+	}
+    }
     
     Json::Value transform = json["transform"];
     if (!transform.empty())
@@ -36,8 +51,10 @@ readJSON(Json::Value json) {
 
     Json::Value components = json["components"];
     for (auto c : components) {
-	GameComponent* component = GameComponentFactory::getComponent(c);
+	bool pending = false;
+	GameComponent* component = GameComponentFactory::getComponent(c, pending);
 	if (component) addComponent(component);
+	if (pending) GameObjectManager::addPendingComponent(root, c);
     }
 
     Json::Value children = json["children"];
@@ -46,6 +63,8 @@ readJSON(Json::Value json) {
 	builder.readJSON(child);
 	root->addChild(builder.get());
     }
+
+    GameObjectManager::resolvePendingComponents();
 
 }
 

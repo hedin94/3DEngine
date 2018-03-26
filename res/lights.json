@@ -17,11 +17,11 @@
 		{
 		    "type" : "PointLight",
 		    "color" : [1, 0, 0],
-		    "intensity" : 1000000,
+		    "intensity" : 10,
 		    "attenuation" : {
 			"constant" : 0,
-			"linear" : 1.5,
-			"exponent" : 0
+			"linear" : 0,
+			"quadratic" : 10
 		    }
 		}
 	    ]
@@ -34,11 +34,11 @@
 		{
 		    "type" : "PointLight",
 		    "color" : [1, 0, 0],
-		    "intensity" : 1000000,
+		    "intensity" : 1,
 		    "attenuation" : {
 			"constant" : 0,
 			"linear" : 1.0,
-			"exponent" : 0
+			"quadratic" : 0
 		    }
 		}
 	    ]
@@ -55,30 +55,30 @@
 		    "attenuation" : {
 			"constant" : 0,
 			"linear" : 0.25,
-			"exponent" : 0
+			"quadratic" : 0
 		    }
 		}
 	    ]
-	}// ,
-	// {
-	//     "transform" : {
-	// 	"pos" : [0, 5, -5],
-	// 	"axis" : [1, 0, 0],
-	// 	"angle" : 60
-	//     },
-	//     "components" : [
-	// 	{
-	// 	    "type" : "SpotLight",
-	// 	    "color" : [1, 1, 1],
-	// 	    "intensity" : 10000000,
-	// 	    "attenuation" : {
-	// 		"constant" : 0.8,
-	// 		"linear" : 0.1,
-	// 		"exponent" : 0.1
-	// 	    },
-	// 	    "cutoff" : 1
-	// 	}
-	//     ]
-	// }
+	},
+	{
+	    "transform" : {
+		"pos" : [0, 5, -5],
+		"axis" : [1, 0, 0],
+		"angle" : 30
+	    },
+	    "components" : [
+		{
+		    "type" : "SpotLight",
+		    "color" : [1, 1, 1],
+		    "intensity" : 1000,
+		    "attenuation" : {
+			"constant" : 0,
+			"linear" : 25,
+			"quadratic" : 1
+		    },
+		    "cutoff" : 30
+		}
+	    ]
+	}
     ]
 }

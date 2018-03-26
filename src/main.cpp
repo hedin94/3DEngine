@@ -2,6 +2,7 @@
 #include "window.hpp"
 
 #include "gameObjectBuilder.hpp"
+#include "gameObjectManager.hpp"
 
 #include "util.hpp"
 #include "testing.hpp"
@@ -11,6 +12,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <map>
+
+#include "spawner.hpp"
 
 using namespace std;
 
@@ -25,6 +29,9 @@ public:
 	DEBUG("Initializing game");
 
 	GameObjectBuilder gameObjectBuilder;
+	gameObjectBuilder.readFile("follower.json");
+	addToScene(gameObjectBuilder.get());
+
 	gameObjectBuilder.readFile("camera.json");
         addToScene(gameObjectBuilder.get());
 
@@ -36,7 +43,15 @@ public:
 
 	gameObjectBuilder.readFile("lights.json");
 	addToScene(gameObjectBuilder.get());
+	
+	std::map<std::string, GameObject*> refObjects = GameObjectManager::getObjects();
 
+	std::cout << "Referenced objects:" << std::endl;
+	for (auto val : refObjects) {
+	    std::cout << val.first << ": " << std::endl;
+	    val.second->dumpComponents();
+	}
+	
 	DEBUG("Game initialized!");
     }
 };

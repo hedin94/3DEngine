@@ -2,8 +2,10 @@ CameraComponent
 FreeLook
 FreeMove
 MeshRenderer
-BaseLight
+-BaseLight
 DirectionalLight
 PointLight
 SpotLight
-
+PhysicsComponent
+Spawner
+-FollowComponent

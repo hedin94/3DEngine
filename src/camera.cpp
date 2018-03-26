@@ -52,3 +52,9 @@ void
 CameraComponent::
 update(float delta){
 }
+
+std::string
+CameraComponent::
+str() const {
+    return "CameraComponent";
+}

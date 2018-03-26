@@ -15,19 +15,21 @@ class Shader;
 class GameComponent
 {
 public:
-  GameComponent();
-  virtual ~GameComponent();
+    GameComponent();
+    virtual ~GameComponent();
 
-  virtual void input(float delta) = 0;
-  virtual void update(float delta) = 0;
-  virtual void render(Shader* shader, RenderingEngine* renderingEngine) = 0;
+    virtual void input(float delta) = 0;
+    virtual void update(float delta) = 0;
+    virtual void render(Shader* shader, RenderingEngine* renderingEngine) = 0;
 
-  virtual void addToEngine(CoreEngine* engine) { DEBUG("GameComponent::addToEngine");}
+    virtual void addToEngine(CoreEngine* engine) { DEBUG("GameComponent::addToEngine");}
 
-  virtual void setParent(GameObject* parent);
-  Transform* getTransform();
+    virtual void setParent(GameObject* parent);
+    Transform* getTransform();
+
+    virtual std::string str() const;
 
 protected:
-  GameObject* m_parent;
+    GameObject* m_parent;
 };
 #endif // GAME_COMPONENT_H

@@ -46,15 +46,15 @@ struct Attenuation
 {
   float constant;
   float linear;
-  float exponent;
+  float quadratic;
 
-  Attenuation(float constant = 0, float linear = 0, float exponent = 1);
+  Attenuation(float constant = 0, float linear = 0, float quadratic = 1);
 };
 
 class PointLight : public BaseLight
 {
 public:
-  PointLight(glm::vec3 color = glm::vec3(0,0,0), float intensity = 0, Attenuation atten = Attenuation());//, const std::string& shaderName = "forward-point");
+  PointLight(glm::vec3 color = glm::vec3(0,0,0), float intensity = 0, Attenuation atten = Attenuation());
 
   virtual void update(float delta) override;
   virtual void addToEngine(CoreEngine* engine) override;
